@@ -69,8 +69,8 @@ int main(int argc, char* argv[argc+1])
 		const ssize_t	got = read(master_fd, g_buf, bufsize);
 		if (got == -1) {
 			switch (errno) {
-				case EINTR: fprintf(stderr, "read EINTR, g_running: %d\n", g_running); continue;
-				case EIO: if (!g_running) break;
+				case EINTR:	continue;
+				case EIO:	if (!g_running) break;
 				default:
 					perror("read");
 					exit(EXIT_FAILURE);
