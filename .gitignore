@@ -1,0 +1,5 @@
+core
+*.o
+forcetty
+*.swp
+*.swo
