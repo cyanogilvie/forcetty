@@ -19,7 +19,7 @@ static pid_t		child_pid;
 
 static void child_handler(int sig, siginfo_t*const restrict info, [[maybe_unused]] void*const ucontextPtr)
 {
-	//struct ucontext_t*const restrict	ucontext = (struct ucontext_t*)ucontext;
+	//struct ucontext_t*const restrict	ucontext = (struct ucontext_t*)ucontextPtr;
 	switch (info->si_code) {
 		case CLD_EXITED:	g_exitstatus = info->si_status;		g_running = 0;	break;
 		case CLD_KILLED:	fprintf(stderr, "Child killed\n");	g_running = 0;	break;
