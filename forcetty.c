@@ -19,7 +19,7 @@ static pid_t		child_pid;
 
 static void child_handler(int sig, siginfo_t*const restrict info, [[maybe_unused]] void*const ucontextPtr)
 {
-	//struct ucontext_t*const restrict	ucontext = (struct ucontext_t*)ucontext;
+	//struct ucontext_t*const restrict	ucontext = (struct ucontext_t*)ucontextPtr;
 	switch (info->si_code) {
 		case CLD_EXITED:	g_exitstatus = info->si_status;		g_running = 0;	break;
 		case CLD_KILLED:	fprintf(stderr, "Child killed\n");	g_running = 0;	break;
@@ -69,8 +69,8 @@ int main(int argc, char* argv[argc+1])
 		const ssize_t	got = read(master_fd, g_buf, bufsize);
 		if (got == -1) {
 			switch (errno) {
-				case EINTR: fprintf(stderr, "read EINTR, g_running: %d\n", g_running); continue;
-				case EIO: if (!g_running) break;
+				case EINTR:	continue;
+				case EIO:	if (!g_running) break;
 				default:
 					perror("read");
 					exit(EXIT_FAILURE);

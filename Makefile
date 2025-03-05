@@ -22,4 +22,4 @@ install: forcetty
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp forcetty $(DESTDIR)$(PREFIX)/bin/
 
-.PHONY: all clean
+.PHONY: all clean install
