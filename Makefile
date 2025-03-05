@@ -10,7 +10,7 @@ LDFLAGS = -lutil
 all: forcetty
 
 forcetty: forcetty.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -fwhole-program -o $@ $^
+	$(CC) $(CFLAGS) -fwhole-program -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
